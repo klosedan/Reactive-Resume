@@ -4,6 +4,7 @@
 *.env
 !.env.gitpod
 !.env.example
+.pnpm-store*
 
 # Project Dependencies
 node_modules
