@@ -27,12 +27,12 @@ import WrapperRegistry from '@/wrappers/index';
 const App = ({ Component, pageProps }: AppProps): JSX.Element => (
   <>
     <Head>
-      <title>Reactive Resume | A free and open source resume builder</title>
+      <title>Resume | Daniel Kloeser</title>
 
-      <meta
+      {/* <meta
         name="description"
         content="Reactive Resume is a free and open source resume builder that's built to make the mundane tasks of creating, updating and sharing your resume as easy as 1, 2, 3."
-      />
+      /> */}
       <link rel="icon" href="/favicon.ico" />
       <meta name="viewport" content="initial-scale=1, width=device-width" />
     </Head>
