@@ -16,7 +16,8 @@ export const formatLocation = (location?: Location): string => {
   const locationArr = [location.address, location.city, location.region, location.postalCode, location.country];
   const filteredLocationArr = locationArr.filter((x) => !isEmpty(x));
 
-  return filteredLocationArr.join(', ');
+  return location.address + ', ' + location.postalCode + ' ' + location.city + ', ' + location.country;
+  //return filteredLocationArr.join(', ');
 };
 
 export const addHttp = (url: string) => {
