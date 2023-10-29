@@ -64,6 +64,9 @@ const Settings = () => {
   const handleChangePageFormat = (value: PageConfig['format'] | null) =>
     dispatch(setResumeState({ path: 'metadata.page.format', value }));
 
+  const handleChangePageLanguage = (value: PageConfig['language'] | null) =>
+    dispatch(setResumeState({ path: 'metadata.page.language', value }));
+
   const handleChangeDateFormat = (value: string | null) =>
     dispatch(setResumeState({ path: 'metadata.date.format', value }));
 
@@ -180,6 +183,23 @@ const Settings = () => {
             />
           </ListItem>
 
+          <ListItem className="flex-col">
+            <ListItemText
+              className="w-full"
+              primary={t('builder.rightSidebar.sections.settings.page.language.primary')}
+              secondary={t('builder.rightSidebar.sections.settings.page.language.secondary')}
+            />
+            <Autocomplete<PageConfig['language'], false, true, false>
+              disableClearable
+              defaultValue="en"
+              className="my-2 w-full"
+              options={['en', 'de']}
+              value={pageConfig?.language || 'en'}
+              renderInput={(params) => <TextField {...params} />}
+              onChange={(_, value) => handleChangePageLanguage(value)}
+            />
+          </ListItem>
+
           <ListItem>
             <ListItemText
               primary={t('builder.rightSidebar.sections.settings.page.orientation.primary')}
@@ -200,12 +220,12 @@ const Settings = () => {
           <ListItem>
             <ListItemText
               primary={t('builder.rightSidebar.sections.settings.page.break-line.primary')}
-              secondary= {
-                locale == 'en' ? (
-                pageConfig?.format == "Letter"
-                  ? t('builder.rightSidebar.sections.settings.page.break-line.secondary.letter')
-                  : t('builder.rightSidebar.sections.settings.page.break-line.secondary.A4')) 
-                : (t('builder.rightSidebar.sections.settings.page.break-line.secondary'))
+              secondary={
+                locale == 'en'
+                  ? pageConfig?.format == 'Letter'
+                    ? t('builder.rightSidebar.sections.settings.page.break-line.secondary.letter')
+                    : t('builder.rightSidebar.sections.settings.page.break-line.secondary.A4')
+                  : t('builder.rightSidebar.sections.settings.page.break-line.secondary')
               }
             />
             <Switch color="secondary" checked={breakLine} onChange={() => dispatch(togglePageBreakLine())} />

@@ -5,6 +5,7 @@ export type CustomCSS = {
 
 export type PageConfig = {
   format: 'A4' | 'Letter';
+  language: 'en' | 'de';
 };
 
 export type ThemeConfig = {

@@ -140,6 +140,7 @@ const defaultState: Partial<Resume> = {
     },
     page: {
       format: 'A4',
+      language: 'en',
     },
     layout: [
       [

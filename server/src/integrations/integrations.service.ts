@@ -938,6 +938,7 @@ export class IntegrationsService {
           },
           page: {
             format: 'A4',
+            language: 'en',
           },
           theme: {
             background: get(jsonResume, 'metadata.colors.background'),
