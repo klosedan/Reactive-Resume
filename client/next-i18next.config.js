@@ -2,7 +2,7 @@ const path = require('path');
 
 const i18nConfig = {
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'de',
     locales: [
       'am',
       'ar',

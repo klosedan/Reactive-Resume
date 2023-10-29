@@ -310,6 +310,10 @@
             "primary": "Paper Size",
             "secondary": "Determines the dimensions of your resume pages"
           },
+          "language": {
+            "primary": "Language",
+            "secondary": "Set language for the resume"
+          },
           "heading": "Page",
           "orientation": {
             "disabled": "Has no effect when there is only one page",
