@@ -2,6 +2,7 @@ import { Email, Link, Phone } from '@mui/icons-material';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
+import { useTranslation } from 'next-i18next';
 import { useMemo } from 'react';
 import { ListItem, Section as SectionType } from 'schema';
 
@@ -21,9 +22,11 @@ const Section: React.FC<SectionProps> = ({
   headlinePath = 'headline',
   keywordsPath = 'keywords',
 }) => {
+  const { t } = useTranslation();
   const section: SectionType = useAppSelector((state) => get(state.resume.present, path, {} as SectionType));
   const dateFormat: string = useAppSelector((state) => get(state.resume.present, 'metadata.date.format'));
   const primaryColor: string = useAppSelector((state) => get(state.resume.present, 'metadata.theme.primary'));
+  const pagelanguage: string = useAppSelector((state) => get(state.resume.present, 'metadata.page.language')) ?? '';
 
   const sectionId = useMemo(() => section.id || path.replace('sections.', ''), [path, section]);
 
@@ -51,7 +54,7 @@ const Section: React.FC<SectionProps> = ({
             email: string = get(item, 'email', ''),
             summary: string = get(item, 'summary', ''),
             levelNum: number = get(item, 'levelNum', 0),
-            date = formatDateString(get(item, 'date', ''), dateFormat);
+            date = formatDateString(get(item, 'date', ''), dateFormat, t('common.date.present', { lng: pagelanguage }));
 
           return (
             <div key={id} className="mb-2 grid gap-1">
