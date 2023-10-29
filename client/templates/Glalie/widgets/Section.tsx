@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import { useMemo } from 'react';
+import { useTranslation } from 'next-i18next';
 
 import Markdown from '@/components/shared/Markdown';
 import { useAppSelector } from '@/store/hooks';
