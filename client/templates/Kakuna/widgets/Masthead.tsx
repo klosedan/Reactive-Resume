@@ -1,6 +1,7 @@
 import { Cake, Email, Phone, Public, Room } from '@mui/icons-material';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { useAppSelector } from '@/store/hooks';
@@ -10,7 +11,9 @@ import getProfileIcon from '@/utils/getProfileIcon';
 import { addHttp, formatLocation, getPhotoClassNames } from '@/utils/template';
 
 const Masthead = () => {
+  const { t } = useTranslation();
   const dateFormat: string = useAppSelector((state) => get(state.resume.present, 'metadata.date.format'));
+  const pagelanguage: string = useAppSelector((state) => get(state.resume.present, 'metadata.page.language')) ?? '';
   const { name, photo, email, phone, website, birthdate, headline, location, profiles } = useAppSelector(
     (state) => state.resume.present.basics,
   );
@@ -35,7 +38,9 @@ const Masthead = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-3">
-        <DataDisplay icon={<Cake />}>{formatDateString(birthdate, dateFormat)}</DataDisplay>
+        <DataDisplay icon={<Cake />}>
+          {formatDateString(birthdate, dateFormat, t('common.date.present', { lng: pagelanguage }))}
+        </DataDisplay>
 
         <DataDisplay icon={<Email />} link={`mailto:${email}`}>
           {email}

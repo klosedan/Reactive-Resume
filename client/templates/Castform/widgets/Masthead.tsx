@@ -3,6 +3,7 @@ import { Cake, Email, Phone, Public, Room } from '@mui/icons-material';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
+import { useTranslation } from 'next-i18next';
 import { useMemo } from 'react';
 import { ThemeConfig } from 'schema';
 
@@ -19,9 +20,11 @@ export const MastheadSidebar: React.FC = () => {
   const { name, headline, photo, email, phone, birthdate, website, location, profiles } = useAppSelector(
     (state) => state.resume.present.basics,
   );
+  const { t } = useTranslation();
   const theme: ThemeConfig = useAppSelector((state) => get(state.resume.present, 'metadata.theme', {} as ThemeConfig));
   const contrast = useMemo(() => getContrastColor(theme.primary), [theme.primary]);
   const color = useMemo(() => (contrast === 'dark' ? theme.text : theme.background), [theme, contrast]);
+  const pagelanguage: string = useAppSelector((state) => get(state.resume.present, 'metadata.page.language')) ?? '';
   const textColorInvert = useMemo(
     () => (contrast === 'dark' ? theme.text : invertHex(theme.text)),
     [theme.text, contrast],
@@ -56,7 +59,7 @@ export const MastheadSidebar: React.FC = () => {
         </DataDisplay>
 
         <DataDisplay icon={<Cake />} className="!gap-2 text-xs">
-          {formatDateString(birthdate, dateFormat)}
+          {formatDateString(birthdate, dateFormat, t('common.date.present', { lng: pagelanguage }))}
         </DataDisplay>
 
         <DataDisplay icon={<Email />} className="!gap-2 text-xs" link={`mailto:${email}`}>
